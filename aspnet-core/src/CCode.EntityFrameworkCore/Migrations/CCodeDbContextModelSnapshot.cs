@@ -17,13 +17,13 @@ namespace CCode.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("MySql:ValueGenerationStrategy",MySqlValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Abp.Application.Editions.Edition", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -56,7 +56,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -86,7 +86,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BrowserInfo")
                         .HasMaxLength(512);
@@ -141,7 +141,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -171,7 +171,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasMaxLength(256);
@@ -199,7 +199,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -246,7 +246,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasMaxLength(256);
@@ -274,7 +274,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("LoginProvider")
                         .IsRequired()
@@ -303,7 +303,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BrowserInfo")
                         .HasMaxLength(512);
@@ -341,7 +341,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -368,7 +368,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -395,7 +395,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime?>("ExpireDate");
 
@@ -425,7 +425,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -460,7 +460,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -495,7 +495,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("ChangeTime");
 
@@ -524,7 +524,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BrowserInfo")
                         .HasMaxLength(512);
@@ -565,7 +565,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<long>("EntityChangeId");
 
@@ -594,7 +594,7 @@ namespace CCode.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -636,7 +636,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -814,7 +814,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -855,7 +855,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreationTime");
 
@@ -882,7 +882,7 @@ namespace CCode.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -940,7 +940,7 @@ namespace CCode.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AccessFailedCount");
 
@@ -1038,7 +1038,7 @@ namespace CCode.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ConnectionString")
                         .HasMaxLength(1024);
