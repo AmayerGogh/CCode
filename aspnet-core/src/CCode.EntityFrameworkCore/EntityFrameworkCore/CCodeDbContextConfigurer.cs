@@ -12,7 +12,7 @@ namespace CCode.EntityFrameworkCore
         }
 
         public static void Configure(DbContextOptionsBuilder<CCodeDbContext> builder, DbConnection connection)
-        {
+        {           
             //builder.UseSqlServer(connection);
             builder.UseMySql(connection);
         }
