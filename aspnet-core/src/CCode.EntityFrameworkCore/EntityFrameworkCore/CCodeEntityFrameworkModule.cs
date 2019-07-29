@@ -29,7 +29,7 @@ namespace CCode.EntityFrameworkCore
                     else
                     {
                         CCodeDbContextConfigurer.Configure(options.DbContextOptions, options.ConnectionString);
-                    }
+                    }                    
                 });
             }
         }

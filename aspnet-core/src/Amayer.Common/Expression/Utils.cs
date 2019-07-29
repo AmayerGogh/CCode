@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Amayer.Common.Expression
+namespace Amayer.Common
 {
    public  class Utils
     {

@@ -12,6 +12,10 @@ namespace CCode.EntityFrameworkCore.Seed
 {
     public static class SeedHelper
     {
+        /// <summary>
+        /// 数据库最初的数据初始化
+        /// </summary>
+        /// <param name="iocResolver"></param>
         public static void SeedHostDb(IIocResolver iocResolver)
         {
             WithDbContext<CCodeDbContext>(iocResolver, SeedHostDb);
