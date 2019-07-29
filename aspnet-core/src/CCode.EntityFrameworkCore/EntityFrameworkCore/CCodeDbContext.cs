@@ -19,8 +19,10 @@ namespace CCode.EntityFrameworkCore
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //sql执行日志
             var loggerFactory = new LoggerFactory();
             loggerFactory.AddProvider(new EFLoggerProvider());
+            optionsBuilder.EnableSensitiveDataLogging();
             optionsBuilder.UseLoggerFactory(loggerFactory);
             base.OnConfiguring(optionsBuilder);
         }
@@ -41,18 +43,13 @@ namespace CCode.EntityFrameworkCore
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
-            //ef core执行数据库查询时的categoryName为Microsoft.EntityFrameworkCore.Database.Command,日志级别为Information
-            //categoryName == "Microsoft.EntityFrameworkCore.Database.Command" &&
-            if ( logLevel == LogLevel.Information)
+            //ef core执行数据库查询时的categoryName为Microsoft.EntityFrameworkCore.Database.Command,日志级别为Information           
+            //_value1 为参数
+            //_value5 为sql
+            if (categoryName == "Microsoft.EntityFrameworkCore.Database.Command" && logLevel == LogLevel.Information)
             {
-                var logContent = formatter(state, exception);
-
-                LogManager.SqlExcute.Info(logContent);
-                //TODO: 拿到日志内容想怎么玩就怎么玩吧
-                //Console.WriteLine();
-                //Console.ForegroundColor = ConsoleColor.Green;
-                //Console.WriteLine(logContent);
-                //Console.ResetColor();
+                var logContent = formatter(state, exception);                
+                LogManager.SqlExcute.Info(logContent);              
             }
         }
 

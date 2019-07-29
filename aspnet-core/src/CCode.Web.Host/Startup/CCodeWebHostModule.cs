@@ -18,9 +18,14 @@ namespace CCode.Web.Host.Startup
             _env = env;
             _appConfiguration = env.GetAppConfiguration();
         }
-
+        public override void PreInitialize()
+        {
+            //关闭后台jobs
+            Configuration.BackgroundJobs.IsJobExecutionEnabled = false;            
+        }
         public override void Initialize()
         {
+           
             IocManager.RegisterAssemblyByConvention(typeof(CCodeWebHostModule).GetAssembly());
         }
     }
