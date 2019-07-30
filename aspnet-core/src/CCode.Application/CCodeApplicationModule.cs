@@ -2,6 +2,7 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using CCode.Authorization;
+using CCode.Blogs.Mapper;
 
 namespace CCode
 {
@@ -13,6 +14,8 @@ namespace CCode
         public override void PreInitialize()
         {
             Configuration.Authorization.Providers.Add<CCodeAuthorizationProvider>();
+
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(ArticleDtoMapper.CreateMappings);
         }
 
         public override void Initialize()

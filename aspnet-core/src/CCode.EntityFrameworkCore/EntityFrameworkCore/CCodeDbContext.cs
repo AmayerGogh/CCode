@@ -17,6 +17,7 @@ namespace CCode.EntityFrameworkCore
             : base(options)
         {
         }
+        public virtual DbSet<Article> Article { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //sql执行日志
