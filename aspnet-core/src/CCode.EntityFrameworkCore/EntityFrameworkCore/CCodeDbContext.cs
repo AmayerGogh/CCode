@@ -6,6 +6,10 @@ using CCode.MultiTenancy;
 using Microsoft.Extensions.Logging;
 using System;
 using CCode.Logs;
+using CCode.Blogs;
+using CCode.Categories;
+using CCode.EntityMapper.Categories;
+using CCode.EntityMapper.Files;
 
 namespace CCode.EntityFrameworkCore
 {
@@ -17,7 +21,12 @@ namespace CCode.EntityFrameworkCore
             : base(options)
         {
         }
-        public virtual DbSet<Article> Article { get; set; }
+        //public virtual DbSet<Article> Articles { get; set; }
+        //public virtual DbSet<ArticleDetail> ArticleDetails { get; set; }
+        //public virtual DbSet<ArticleLabel> ArticleLabels { get; set; }
+        //public DbSet<Category> Categorys { get; set; }
+        //public DbSet<File> Files { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //sql执行日志
@@ -27,7 +36,12 @@ namespace CCode.EntityFrameworkCore
             optionsBuilder.UseLoggerFactory(loggerFactory);
             base.OnConfiguring(optionsBuilder);
         }
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new CategoryCfg());
+            modelBuilder.ApplyConfiguration(new FileCfg());
+            base.OnModelCreating(modelBuilder);
+        }
     }
     public class EFLoggerProvider : ILoggerProvider
     {

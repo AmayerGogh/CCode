@@ -34,7 +34,7 @@ namespace CCode.Blogs.Dto
 
     }
     /// <summary></summary>
-    [AutoMap(typeof(Articles.Article))]
+    [AutoMap(typeof(Blogs.Article))]
     public class ArticleForEditDto : ArticleEditDto
     {
         /// <summary></summary>

@@ -2,7 +2,12 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using CCode.Authorization;
+using CCode.Blogs.Authorization;
 using CCode.Blogs.Mapper;
+using CCode.Categories.Authorization;
+using CCode.Categories.Mapper;
+using CCode.Files.Authorization;
+using CCode.Files.Mapper;
 
 namespace CCode
 {
@@ -15,7 +20,18 @@ namespace CCode
         {
             Configuration.Authorization.Providers.Add<CCodeAuthorizationProvider>();
 
-            Configuration.Modules.AbpAutoMapper().Configurators.Add(ArticleDtoMapper.CreateMappings);
+            Configuration.Authorization.Providers.Add<ArticleAppAuthorizationProvider>();
+            Configuration.Authorization.Providers.Add<CategoryAuthorizationProvider>();
+            Configuration.Authorization.Providers.Add<FileAuthorizationProvider>();
+
+
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(configuration =>
+            {             
+                CategoryMapper.CreateMappings(configuration);
+                FileMapper.CreateMappings(configuration);
+                ArticleDtoMapper.CreateMappings(configuration);
+                // ....
+            });
         }
 
         public override void Initialize()

@@ -1,4 +1,5 @@
 {
+  //编译选项
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -12,6 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "strictPropertyInitialization":false,
     "sourceMap": true,
+    // 解析非相对模块名的基准目录
     "baseUrl": ".",
     "types": [
       "webpack-env"
