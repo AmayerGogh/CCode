@@ -10,6 +10,7 @@ using CCode.Blogs;
 using CCode.Categories;
 using CCode.EntityMapper.Categories;
 using CCode.EntityMapper.Files;
+using CCode.Files;
 
 namespace CCode.EntityFrameworkCore
 {
@@ -21,11 +22,11 @@ namespace CCode.EntityFrameworkCore
             : base(options)
         {
         }
-        //public virtual DbSet<Article> Articles { get; set; }
-        //public virtual DbSet<ArticleDetail> ArticleDetails { get; set; }
-        //public virtual DbSet<ArticleLabel> ArticleLabels { get; set; }
-        //public DbSet<Category> Categorys { get; set; }
-        //public DbSet<File> Files { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
+        public virtual DbSet<ArticleDetail> ArticleDetails { get; set; }
+        public virtual DbSet<ArticleLabel> ArticleLabels { get; set; }
+        public virtual DbSet<Category> Categorys { get; set; }
+        public virtual DbSet<File> Files { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
