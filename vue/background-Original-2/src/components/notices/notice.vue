@@ -1,12 +1,12 @@
 <template>
     <div class="lock-screen-btn-con">
         <Poptip placement="bottom-end" @on-popper-show="getNotices">
-            <Badge :count="unReadCount" dot>
+            <el-badge :value="unReadCount">
                 <i class="iconfont" style="font-size:20px">&#xe70a;</i>
-            </Badge>
+            </el-badge>
                 <div slot="content" class="content">
-                    <Tabs value="notice">
-                        <TabPane :label="noticeLabel" name="notice">
+                    <el-tabs value="notice">
+                        <!-- <el-tab-pan :label="noticeLabel" name="notice">
                             <div class="noFound" v-if="!noticeCount">
                                 <i class="iconfont">&#xe70a;</i>
                                 <div class="noTitle">{{L('NoNotice')}}</div>
@@ -28,8 +28,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </TabPane>
-                        <TabPane :label="messageLabel" name="message">
+                        </el-tab-pan>
+                        <el-tab-pan :label="messageLabel" name="message">
                             <div class="noFound" v-if="!messageCount">
                                 <i class="iconfont">&#xe66b;</i>
                                 <div class="noTitle">{{L('NoMessage')}}</div>
@@ -49,8 +49,8 @@
                                         </div>
                                     </div>
                             </div>
-                        </TabPane>
-                        <TabPane :label="taskLabel" name="task">
+                        </el-tab-pan>
+                        <el-tab-pan :label="taskLabel" name="task">
                             <div class="noFound" v-if="!taskCount">
                                 <i class="iconfont">&#xe6b2;</i>
                                 <div class="noTitle">{{L('NoTask')}}</div>
@@ -70,8 +70,8 @@
                                         </div>
                                     </div>
                             </div>
-                        </TabPane>
-                    </Tabs>
+                        </el-tab-pan> -->
+                    </el-tabs>
                 </div>
         </Poptip>
     </div>

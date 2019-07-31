@@ -4,6 +4,7 @@
   </div>
 </template>
 <script lang="ts">
+//ele
 import { Component, Vue } from 'vue-property-decorator';
 @Component({
     props:{

@@ -1,14 +1,23 @@
 <template>
-    <Breadcrumb>
+    <!-- <Breadcrumb>
         <BreadcrumbItem 
             v-for="item in currentPath" 
             :to="item" 
             :key="item.name"
         >{{ itemTitle(item) }}</BreadcrumbItem>
-    </Breadcrumb>
+    </Breadcrumb> -->
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item 
+         v-for="item in currentPath" 
+            :to="item" 
+            :key="item.name"
+        >{{ itemTitle(item) }}</el-breadcrumb-item>
+   
+    </el-breadcrumb>
 </template>
 
 <script lang="ts">
+//ele
 import { Component, Vue,Inject, Prop } from 'vue-property-decorator';
 import AbpBase from '../lib/abpbase'
 @Component

@@ -1,6 +1,6 @@
 <template>
     <div  class="full-screen-btn-con language-list" style="width:80px">
-        <Dropdown @on-click="changeLanguage">
+        <!-- <Dropdown @on-click="changeLanguage">
             <a>
                 <i :class="currentLanguage.icon" style="display:inline-block"></i>
                 {{currentLanguage.displayName}}
@@ -12,10 +12,23 @@
                     {{language.displayName}}
                 </DropdownItem>
             </DropdownMenu>       
-        </Dropdown>
+        </Dropdown> -->
+         <el-dropdown @on-click="changeLanguage">
+            <a>
+                <i :class="currentLanguage.icon" style="display:inline-block"></i>
+                {{currentLanguage.displayName}}                
+            </a> 
+            <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item v-for="(language,index) in languages" :key="index" :name="language.name">
+                    <i :class="language.icon" style="display:inline-block"></i>
+                    {{language.displayName}}
+                </el-dropdown-item>
+            </el-dropdown-menu>       
+        </el-dropdown>
     </div>
 </template>
 <script lang="ts">
+//ele
 import { Component, Vue,Inject, Prop,Watch } from 'vue-property-decorator';
 import Util from '../lib/util'
 import AbpBase from '../lib/abpbase'
