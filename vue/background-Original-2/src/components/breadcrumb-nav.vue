@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-//ele
+//ele 面包屑
 import { Component, Vue,Inject, Prop } from 'vue-property-decorator';
 import AbpBase from '../lib/abpbase'
 @Component

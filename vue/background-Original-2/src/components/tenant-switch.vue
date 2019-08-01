@@ -1,18 +1,27 @@
 <template>
     <div>
-        <Modal
+        <!-- <Modal
          :title="L('ChangeTenant')"
          :value="value"
          @on-ok="changeTenant"
          @on-visible-change="visibleChange"
         >
-             <Input :placeholder="L('TenancyName')" v-model="changedTenancyName"></Input>
+             <Input :placeholder="L('TenancyName')" v-model="changedTenancyName"></Input> 
+             <el-input v-model="changedTenancyName" :placeholder="L('TenancyName')"></el-input>
              <div v-if="!changedTenancyName" style="margin-top:10px">{{L('LeaveEmptyToSwitchToHost')}}</div>
              <div slot="footer">
-                <Button @click="cancel">{{L('Cancel')}}</Button>
-                <Button @click="changeTenant" type="primary">{{L('OK')}}</Button>
+                <el-button @click="cancel">{{L('Cancel')}}</el-button>
+                <el-button @click="changeTenant" type="primary">{{L('OK')}}</el-button>
              </div>
         </Modal>
+-->
+       <el-dialog :title="L('ChangeTenant')" :visible.sync="value" :closed="cancel">
+            <el-table :data="gridData">
+                <el-table-column property="date" label="日期" width="150"></el-table-column>
+                <el-table-column property="name" label="姓名" width="200"></el-table-column>
+                <el-table-column property="address" label="地址"></el-table-column>
+            </el-table>
+        </el-dialog>
     </div>
 </template>
 <script lang="ts">

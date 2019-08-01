@@ -13,13 +13,13 @@
                 </DropdownItem>
             </DropdownMenu>       
         </Dropdown> -->
-         <el-dropdown @on-click="changeLanguage">
+         <el-dropdown >
             <a>
                 <i :class="currentLanguage.icon" style="display:inline-block"></i>
                 {{currentLanguage.displayName}}                
             </a> 
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item v-for="(language,index) in languages" :key="index" :name="language.name">
+                <el-dropdown-item v-for="(language,index) in languages" :key="index" :name="language.name" @click="changeLanguage(language.name)">
                     <i :class="language.icon" style="display:inline-block"></i>
                     {{language.displayName}}
                 </el-dropdown-item>
@@ -39,7 +39,7 @@ export default class LanguageList extends AbpBase{
             return !val.isDisabled&&val.name!==this.currentLanguage.name;
         });
     }
-    async changeLanguage(languageName:string){
+    async changeLanguage(languageName:string){        
         await this.$store.dispatch({
             type:'user/changeLanguage',
             data:{languageName:languageName}

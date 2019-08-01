@@ -13,6 +13,7 @@
     </div>
 </template>
 <script lang="ts">
+//登陆页
 import { Component, Vue,Inject, Prop,Watch } from 'vue-property-decorator';
 import Util from '../lib/util'
 import AbpBase from '../lib/abpbase'

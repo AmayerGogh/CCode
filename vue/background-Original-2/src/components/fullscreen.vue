@@ -2,10 +2,11 @@
     <div @click="handleChange" v-if="showFullScreenBtn" class="full-screen-btn-con">
         <!-- <Tooltip :content="value ? L('ExitFullScreen') : L('FullScreen')" placement="bottom">
             <Icon :type="value ? 'arrow-shrink' : 'arrow-expand'" :size="23"></Icon>
-        </Tooltip> -->
-        <el-tooltip :content="value ? L('ExitFullScreen') : L('FullScreen')" placement="bottom">
-            <el-button :type="value ? 'arrow-shrink' : 'arrow-expand'" >搜索</el-button>
-        </el-tooltip>
+        </Tooltip> -->      
+         <el-tooltip class="item" effect="dark" :content="value ? L('ExitFullScreen') : L('FullScreen')" placement="bottom">
+             <i class="el-icon-full-screen"></i>
+         </el-tooltip>
+        
     </div>
 </template>
 
