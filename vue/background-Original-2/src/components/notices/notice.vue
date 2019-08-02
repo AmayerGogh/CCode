@@ -1,79 +1,91 @@
 <template>
     <div class="lock-screen-btn-con">
-        <Poptip placement="bottom-end" @on-popper-show="getNotices">
-            <el-badge :value="unReadCount">
-                <i class="iconfont" style="font-size:20px">&#xe70a;</i>
-            </el-badge>
-                <div slot="content" class="content">
-                    <el-tabs value="notice">
-                        <!-- <el-tab-pan :label="noticeLabel" name="notice">
-                            <div class="noFound" v-if="!noticeCount">
-                                <i class="iconfont">&#xe70a;</i>
-                                <div class="noTitle">{{L('NoNotice')}}</div>
-                            </div>
-                            <div v-if="noticeCount">
-                                <div class="list">
-                                    <Spin size="large" fix v-if="noticeSpinShow"></Spin>
-                                    <div class="list-item" v-for="(notice,index) in noticeArray" :key="index">
-                                        <div class="list-item-meta">
-                                            <div class="list-item-meta-content">
-                                                <h4 class="list-item-meta-title">
-                                                    <div class="title">{{notice.title}}</div>
-                                                </h4>
-                                                <div class="list-item-meta-description">
-                                                    <div class="description">{{notice.description}}</div>
-                                                </div>
-                                            </div>
+        <!-- <Poptip placement="bottom-end" @on-popper-show="getNotices">
+           
+        </Poptip> -->
+        
+          <el-popover
+            placement="bottom"
+            title="标题"
+            width="200"
+            trigger="click"
+            content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+               <el-tabs value="notice">
+                    <!-- <el-tab-pan :label="noticeLabel" name="notice">
+                    <div class="noFound" v-if="!noticeCount">
+                        <i class="iconfont">&#xe70a;</i>
+                        <div class="noTitle">{{L('NoNotice')}}</div>
+                    </div>
+                    <div v-if="noticeCount">
+                        <div class="list">
+                            <Spin size="large" fix v-if="noticeSpinShow"></Spin>
+                            <div class="list-item" v-for="(notice,index) in noticeArray" :key="index">
+                                <div class="list-item-meta">
+                                    <div class="list-item-meta-content">
+                                        <h4 class="list-item-meta-title">
+                                            <div class="title">{{notice.title}}</div>
+                                        </h4>
+                                        <div class="list-item-meta-description">
+                                            <div class="description">{{notice.description}}</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </el-tab-pan>
-                        <el-tab-pan :label="messageLabel" name="message">
-                            <div class="noFound" v-if="!messageCount">
-                                <i class="iconfont">&#xe66b;</i>
-                                <div class="noTitle">{{L('NoMessage')}}</div>
-                            </div>
-                            <div  v-if="messageCount">
-                                <Spin size="large" fix v-if="noticeSpinShow"></Spin>
-                                    <div class="list-item" v-for="(message,index) in messageArray" :key="index">
-                                        <div class="list-item-meta">
-                                            <div class="list-item-meta-content">
-                                                <h4 class="list-item-meta-title">
-                                                    <div class="title">{{message.title}}</div>
-                                                </h4>
-                                                <div class="list-item-meta-description">
-                                                    <div class="description">{{message.description}}</div>
-                                                </div>
+                        </div>
+                    </div>
+                    </el-tab-pan>
+                    <el-tab-pan :label="messageLabel" name="message">
+                        <div class="noFound" v-if="!messageCount">
+                            <i class="iconfont">&#xe66b;</i>
+                            <div class="noTitle">{{L('NoMessage')}}</div>
+                        </div>
+                        <div  v-if="messageCount">
+                            <Spin size="large" fix v-if="noticeSpinShow"></Spin>
+                                <div class="list-item" v-for="(message,index) in messageArray" :key="index">
+                                    <div class="list-item-meta">
+                                        <div class="list-item-meta-content">
+                                            <h4 class="list-item-meta-title">
+                                                <div class="title">{{message.title}}</div>
+                                            </h4>
+                                            <div class="list-item-meta-description">
+                                                <div class="description">{{message.description}}</div>
                                             </div>
                                         </div>
                                     </div>
-                            </div>
-                        </el-tab-pan>
-                        <el-tab-pan :label="taskLabel" name="task">
-                            <div class="noFound" v-if="!taskCount">
-                                <i class="iconfont">&#xe6b2;</i>
-                                <div class="noTitle">{{L('NoTask')}}</div>
-                            </div>
-                            <div  v-if="taskCount">
-                                <Spin size="large" fix v-if="noticeSpinShow"></Spin>
-                                    <div class="list-item" v-for="(task,index) in taskArray" :key="index">
-                                        <div class="list-item-meta">
-                                            <div class="list-item-meta-content">
-                                                <h4 class="list-item-meta-title">
-                                                    <div class="title">{{task.title}}</div>
-                                                </h4>
-                                                <div class="list-item-meta-description">
-                                                    <div class="description">{{task.description}}</div>
-                                                </div>
+                                </div>
+                        </div>
+                    </el-tab-pan>
+                    <el-tab-pan :label="taskLabel" name="task">
+                        <div class="noFound" v-if="!taskCount">
+                            <i class="iconfont">&#xe6b2;</i>
+                            <div class="noTitle">{{L('NoTask')}}</div>
+                        </div>
+                        <div  v-if="taskCount">
+                            <Spin size="large" fix v-if="noticeSpinShow"></Spin>
+                                <div class="list-item" v-for="(task,index) in taskArray" :key="index">
+                                    <div class="list-item-meta">
+                                        <div class="list-item-meta-content">
+                                            <h4 class="list-item-meta-title">
+                                                <div class="title">{{task.title}}</div>
+                                            </h4>
+                                            <div class="list-item-meta-description">
+                                                <div class="description">{{task.description}}</div>
                                             </div>
                                         </div>
                                     </div>
-                            </div>
-                        </el-tab-pan> -->
-                    </el-tabs>
+                                </div>
+                        </div>
+                    </el-tab-pan> -->
+                </el-tabs>
+             <el-badge :value="unReadCount" slot="reference">
+                <i class="iconfont" style="font-size:20px">&#xe70a;</i>
+             </el-badge>
+        </el-popover>
+
+                <div slot="content" class="content">
+                    
+                   
                 </div>
-        </Poptip>
     </div>
 </template>
 <script lang="ts">
@@ -82,6 +94,27 @@ import AbpBase from '../../lib/abpbase'
 @Component
 export default class Notice extends AbpBase{
     noticeSpinShow:boolean=true;
+    data() {
+      return {
+        gridData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }]
+      }
+    }
     get noticeList():Array<any>{
         return this.$store.state.app.noticeList;
     }

@@ -28,13 +28,24 @@
           <a style="float:right;font-size: 14px;margin-top: 3px;">{{L('ForgetPassword')}}</a>
         </div>
         <div style="margin-top:15px">
-          <el-button type="primary" @click="login" long size="large">{{L('LogIn')}}</el-button>
+          <center>
+              <el-button type="primary" @click="login" long size="large">{{L('LogIn')}}</el-button>
+          </center>
+          
         </div>
         <language-switch></language-switch>
       </div>
     </div>
     <Footer :copyright="L('CopyRight')"></Footer>
-    <tenant-switch v-model="showChangeTenant"></tenant-switch>
+    <!-- <tenant-switch v-model="showChangeTenant"></tenant-switch> -->
+    <el-dialog :title="L('ChangeTenant')" :visible.sync="showChangeTenant" >         
+          <el-input v-model="changedTenancyName" :placeholder="L('TenancyName')"></el-input>
+            <div v-if="!changedTenancyName" style="margin-top:10px">{{L('LeaveEmptyToSwitchToHost')}}</div>
+             <div slot="footer">
+                <el-button @click="showChangeTenant =false">{{L('Cancel')}}</el-button>
+                <el-button @click="changeTenant" type="primary">{{L('OK')}}</el-button>
+             </div>
+      </el-dialog>
   </div>
 </template>
 <script lang="ts">
@@ -42,6 +53,7 @@ import { Component, Vue,Inject } from 'vue-property-decorator';
 import Footer from '../components/Footer.vue'
 import TenantSwitch from '../components/tenant-switch.vue'
 import LanguageSwitch from '../components/language-switch.vue'
+import Util from '../lib/util'
 import iView from 'iview';
 import AbpBase from '../lib/abpbase'
 @Component({
@@ -53,6 +65,7 @@ export default class Login extends AbpBase {
     password:'',
     rememberMe:false
   }
+  changedTenancyName:string='';
   showChangeTenant:boolean=false
   async login(){
     (this.$refs.loginform as any).validate(async (valid:boolean)=>{
@@ -81,8 +94,34 @@ export default class Login extends AbpBase {
       { required: true, message: this.L('PasswordRequired'), trigger: 'blur' }
     ]
   }
-  created(){
-  }
+  
+  
+    async changeTenant(){
+        if (!this.changedTenancyName) {
+            Util.abp.multiTenancy.setTenantIdCookie(undefined);;
+            location.reload();
+            return;
+        }else{
+            let tenant=await this.$store.dispatch({
+                type:'account/isTenantAvailable',
+                data:{tenancyName:this.changedTenancyName}
+            })
+            switch(tenant.state){
+                case 1:
+                    Util.abp.multiTenancy.setTenantIdCookie(tenant.tenantId);
+                    location.reload();
+                    return;
+                case 2:
+                    this.showChangeTenant =false;
+                    this.$Modal.error({title:this.L('Error'),content:this.L('TenantIsNotActive')});
+                    break;
+                case 3:
+                    this.showChangeTenant =false;
+                    this.$Modal.error({title:this.L('Error'),content:this.L('ThereIsNoTenantDefinedWithName{0}',undefined,this.changedTenancyName)});
+                    break;
+            }
+            }
+    }
   
 }
 </script>

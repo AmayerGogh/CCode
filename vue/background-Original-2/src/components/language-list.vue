@@ -13,14 +13,15 @@
                 </DropdownItem>
             </DropdownMenu>       
         </Dropdown> -->
-         <el-dropdown >
+         <el-dropdown trigger="click" @command="changeLanguage">
             <a>
                 <i :class="currentLanguage.icon" style="display:inline-block"></i>
-                {{currentLanguage.displayName}}                
+                {{currentLanguage.displayName}}     
+                <i class="el-icon-arrow-down el-icon--right"></i>           
             </a> 
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item v-for="(language,index) in languages" :key="index" :name="language.name" @click="changeLanguage(language.name)">
-                    <i :class="language.icon" style="display:inline-block"></i>
+                <el-dropdown-item v-for="(language,index) in languages" :key="index" :name="language.name" :command="language.name">
+                    <i :class="language.icon"  @click="changeLanguage(language.name)" style="display:inline-block"></i>
                     {{language.displayName}}
                 </el-dropdown-item>
             </el-dropdown-menu>       
@@ -39,7 +40,7 @@ export default class LanguageList extends AbpBase{
             return !val.isDisabled&&val.name!==this.currentLanguage.name;
         });
     }
-    async changeLanguage(languageName:string){        
+    async changeLanguage(languageName:string){               
         await this.$store.dispatch({
             type:'user/changeLanguage',
             data:{languageName:languageName}
@@ -52,6 +53,7 @@ export default class LanguageList extends AbpBase{
         );
         location.reload();
     }
+    
     get currentLanguage(){
         return abp.localization.currentLanguage;
     }
