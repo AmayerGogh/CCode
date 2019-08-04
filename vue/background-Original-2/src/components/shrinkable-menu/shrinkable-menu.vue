@@ -8,23 +8,22 @@
             :open-names="openNames"
             @on-change="handleChange"
         ></sidebar-menu>
-        <sidebar-menu-shrink 
+        <!-- <sidebar-menu-shrink 
             v-show="shrink"
             :menu-theme="theme" 
             :menu-list="menuList" 
             :icon-color="shrinkIconColor"
             @on-change="handleChange"
-        ></sidebar-menu-shrink>
+        ></sidebar-menu-shrink> -->
     </div>
 </template>
 
 <script lang="ts">
 import sidebarMenu from './components/sidebarMenu.vue';
-import sidebarMenuShrink from './components/sidebarMenuShrink.vue';
 import util from '../../lib/util';
 import { Component, Vue,Inject,Prop,Emit } from 'vue-property-decorator';
 @Component({
-    components:{sidebarMenu,sidebarMenuShrink},
+    components:{sidebarMenu},
 })
 export default class ShrinkableMenu extends Vue {
     name:string='shrinkableMenu';

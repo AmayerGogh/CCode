@@ -94,6 +94,8 @@
           return this.$store.state.app.openedSubmenuArr
         }
         get menuList () {
+          //console.log("menuList")
+          //console.log(this.$store.state.app.menuList)
           return this.$store.state.app.menuList;
         }
         get pageTagsList () {

@@ -1,8 +1,8 @@
 <template>
     <div>
-        <Card dis-hover>
+        <el-card class="box-card">            
             <div class="page-body">
-                <Form ref="queryForm" :label-width="80" label-position="left" inline>
+                <!-- <Form ref="queryForm" :label-width="80" label-position="left" inline>
                     <Row :gutter="16">
                         <Col span="6">
                             <FormItem :label="L('Keyword')+':'" style="width:100%">
@@ -10,9 +10,8 @@
                             </FormItem>
                         </Col>
                         <Col span="6">
-                            <FormItem :label="L('IsActive')+':'" style="width:100%">
-                                <!--Select should not set :value="'All'" it may not trigger on-change when first select 'NoActive'(or 'Actived') then select 'All'-->
-                                <Select :placeholder="L('Select')" @on-change="isActiveChange">
+                            <FormItem :label="L('IsActive')+':'" style="width:100%">                              
+                                <Select  :placeholder="L('Select')" @on-change="isActiveChange">
                                     <Option value="All">{{L('All')}}</Option>
                                     <Option value="Actived">{{L('Actived')}}</Option>
                                     <Option value="NoActive">{{L('NoActive')}}</Option>
@@ -29,14 +28,61 @@
                         <Button @click="create" icon="android-add" type="primary" size="large">{{L('Add')}}</Button>
                         <Button icon="ios-search" type="primary" size="large" @click="getpage" class="toolbar-btn">{{L('Find')}}</Button>
                     </Row>
-                </Form>
+                </Form> -->
+
+                <el-form :inline="true" ref="queryForm">
+                    <el-row :gutter="16">
+                        <el-col :span="6">
+                            <el-form-item :label="L('Keyword')+':'">
+                                <el-input  v-model="pagerequest.keyword" :placeholder="L('UserName')+'/'+L('Name')"></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-form-item :label="L('IsActive')+':'" style="width:100%">                              
+                                 <el-select v-model="pagerequest.isActive"   placeholder="请选择">
+                                    <el-option
+                                    v-for="item in selectList"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-form-item :label="L('CreationTime')+':'" style="width:100%">
+                                <el-date-picker  v-model="creationTime" 
+                                    type="datetimerange" 
+                                    format="yyyy-MM-dd" 
+                                    style="width:100%" placement="bottom-end" 
+                                    :placeholder="L('SelectDate')">
+                                </el-date-picker>
+                            </el-form-item>
+                        </el-col>
+                       
+                    
+                    </el-row>
+                    <el-row>
+                       <el-button @click="create" icon="android-add" type="primary" size="large">{{L('Add')}}</el-button>
+                       <el-button icon="ios-search" type="primary" size="large" @click="getpage" class="toolbar-btn">{{L('Find')}}</el-button>
+                    </el-row>
+                   
+                </el-form>
                 <div class="margin-top-10">
                     <Table :loading="loading" :columns="columns" :no-data-text="L('NoDatas')" border :data="list">
                     </Table>
                     <Page  show-sizer class-name="fengpage" :total="totalCount" class="margin-top-10" @on-change="pageChange" @on-page-size-change="pagesizeChange" :page-size="pageSize" :current="currentPage"></Page>
+                    <el-pagination
+                        background
+                        class="margin-top-10" 
+                        layout="prev, pager, next"
+                        :page-sizes="[10, 20, 50, 100]"
+                        :page-size="10"
+                        :total="totalCount">
+                    </el-pagination>
                 </div>
             </div>
-        </Card>
+        </el-card>
         <create-user v-model="createModalShow" @save-success="getpage"></create-user>
         <edit-user v-model="editModalShow" @save-success="getpage"></edit-user>
     </div>
@@ -50,11 +96,11 @@
     import EditUser from './edit-user.vue'
     class  PageUserRequest extends PageRequest{
         keyword:string;
-        isActive:boolean=null;//nullable
+        isActive:any=null;//nullable
         from:Date;
         to:Date;
     }
-
+    
     @Component({
         components:{CreateUser,EditUser}
     })
@@ -77,16 +123,7 @@
         create(){
             this.createModalShow=true;
         }
-        isActiveChange(val:string){
-            console.log(val);
-            if(val==='Actived'){
-                this.pagerequest.isActive=true;
-            }else if(val==='NoActive'){
-                this.pagerequest.isActive=false;
-            }else{
-                this.pagerequest.isActive=null;
-            }
-        }
+      
         pageChange(page:number){
             this.$store.commit('user/setCurrentPage',page);
             this.getpage();
@@ -122,6 +159,15 @@
         get currentPage(){
             return this.$store.state.user.currentPage;
         }
+        selectList =[{          
+          label: this.L('All')
+        }, {
+          value: true,
+          label: this.L('Actived')
+        }, {
+          value:false,
+          label: this.L('NoActive')
+        }]       
         columns=[{
             title:this.L('UserName'),
             key:'userName'
