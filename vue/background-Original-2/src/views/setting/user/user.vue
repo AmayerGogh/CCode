@@ -69,15 +69,63 @@
                    
                 </el-form>
                 <div class="margin-top-10">
-                    <Table :loading="loading" :columns="columns" :no-data-text="L('NoDatas')" border :data="list">
-                    </Table>
-                    <Page  show-sizer class-name="fengpage" :total="totalCount" class="margin-top-10" @on-change="pageChange" @on-page-size-change="pagesizeChange" :page-size="pageSize" :current="currentPage"></Page>
+                    <Table :loading="loading" 
+                    :columns="columns" 
+                    :no-data-text="L('NoDatas')" 
+                    border 
+                    :data="list">
+                    </Table>  
+
+                    <el-table  
+                    :data="list" 
+                     border
+                    style="width:100%">
+                        <el-table-column
+                            prop="userName"
+                            :label="L('UserName')"
+                            width="180">
+                        </el-table-column>
+                        
+                        <el-table-column
+                            prop="name"
+                            :label="L('Name')"
+                            >
+                        </el-table-column>
+                        <el-table-column                           
+                            :label="L('IsActive')">
+                            <template slot-scope="scope">
+                                 {{scope.row.isActive?L('Yes'):L('No')}}
+                            </template>    
+                        </el-table-column>
+                        <el-table-column
+                            prop="creationTime"
+                            :label="L('CreationTime')"
+                           :formatter="formatter"
+                            >
+                        </el-table-column>
+                        <el-table-column
+                            prop="lastLoginTime"
+                            :label="L('LastLoginTime')"
+                            >
+                        </el-table-column>
+                         <el-table-column
+                            fixed="right"
+                            label="操作"
+                            width="100">
+                            <template slot-scope="scope">
+                                <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+                                <el-button type="text" size="small">编辑</el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+
                     <el-pagination
                         background
                         class="margin-top-10" 
-                        layout="prev, pager, next"
+                        layout="total, sizes, prev, pager, next, jumper"
                         :page-sizes="[10, 20, 50, 100]"
                         :page-size="10"
+                        @current-change="pageChange"
                         :total="totalCount">
                     </el-pagination>
                 </div>
@@ -159,6 +207,7 @@
         get currentPage(){
             return this.$store.state.user.currentPage;
         }
+        //是否启用
         selectList =[{          
           label: this.L('All')
         }, {
@@ -167,7 +216,8 @@
         }, {
           value:false,
           label: this.L('NoActive')
-        }]       
+        }]   
+
         columns=[{
             title:this.L('UserName'),
             key:'userName'
@@ -242,6 +292,9 @@
             await this.$store.dispatch({
                 type:'user/getRoles'
             })
+        }
+         formatter(row, column) {
+            return new Date(row.creationTime).toLocaleDateString() 
         }
     }
 </script>
