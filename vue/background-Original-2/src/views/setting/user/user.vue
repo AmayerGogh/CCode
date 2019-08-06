@@ -113,8 +113,8 @@
                             label="操作"
                             width="100">
                             <template slot-scope="scope">
-                                <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-                                <el-button type="text" size="small">编辑</el-button>
+                                <el-button @click="handleClick(scope.row)" type="primary" size="mini">编辑</el-button>
+                                <el-button @click="handleClick_del(scope.row)" type="danger" size="mini">删除</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -293,8 +293,27 @@
                 type:'user/getRoles'
             })
         }
-         formatter(row, column) {
+        formatter(row, column) {
             return new Date(row.creationTime).toLocaleDateString() 
+        }
+        handleClick(row){
+             this.$store.commit('user/edit',row);
+             this.edit();
+        }
+        handleClick_del(row){
+             this.$Modal.confirm({
+                title:this.L('Tips'),
+                content:this.L('DeleteUserConfirm'),
+                okText:this.L('Yes'),
+                cancelText:this.L('No'),
+                onOk:async()=>{
+                    await this.$store.dispatch({
+                        type:'user/delete',
+                        data:row
+                    })
+                    await this.getpage();
+                }
+            })
         }
     }
 </script>
